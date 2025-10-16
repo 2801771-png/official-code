@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>Dashboard</h1>
+        <p class="lead">African Critical Minerals Monitoring System</p>
+    </div>
+</div>
+
+<!-- Statistics with proper ARIA labels -->
+<section aria-labelledby="stats-heading" class="mb-4">
+    <h2 id="stats-heading" class="visually-hidden">System Statistics</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary" role="region" aria-label="Countries monitored">
+                <div class="card-body">
+                    <h3 class="card-title h2">{{ total_countries }}</h3>
+                    <p class="card-text">Countries Monitored</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success" role="region" aria-label="Critical minerals tracked">
+                <div class="card-body">
+                    <h3 class="card-title h2">{{ total_minerals }}</h3>
+                    <p class="card-text">Critical Minerals</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-info" role="region" aria-label="Total production data">
+                <div class="card-body">
+                    <h3 class="card-title h2">{{ "{:,}".format(total_production) }}</h3>
+                    <p class="card-text">Total Production (tonnes)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation cards with proper semantics -->
+<section aria-labelledby="features-heading">
+    <h2 id="features-heading" class="visually-hidden">Application Features</h2>
+    <div class="row" role="list">
+        <div class="col-md-3 mb-3" role="listitem">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <span class="h3" aria-hidden="true">🌍</span>
+                    <h3 class="card-title h5">Countries</h3>
+                    <p class="card-text">View country profiles and statistics</p>
+                    <a href="{{ url_for('countries') }}" class="btn btn-outline-primary stretched-link"
+                       aria-label="Explore country profiles and data">
+                        Explore Countries
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3" role="listitem">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <span class="h3" aria-hidden="true">💎</span>
+                    <h3 class="card-title h5">Minerals</h3>
+                    <p class="card-text">Browse critical minerals database</p>
+                    <a href="{{ url_for('minerals') }}" class="btn btn-outline-primary stretched-link"
+                       aria-label="Browse minerals database">
+                        Explore Minerals
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3" role="listitem">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <span class="h3" aria-hidden="true">🗺️</span>
+                    <h3 class="card-title h5">Map</h3>
+                    <p class="card-text">Interactive mineral sites map</p>
+                    <a href="{{ url_for('map_view') }}" class="btn btn-outline-primary stretched-link"
+                       aria-label="View interactive map of mining sites">
+                        Explore Map
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3" role="listitem">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <span class="h3" aria-hidden="true">📊</span>
+                    <h3 class="card-title h5">Charts</h3>
+                    <p class="card-text">Data visualization and trends</p>
+                    <a href="{{ url_for('charts') }}" class="btn btn-outline-primary stretched-link"
+                       aria-label="View data visualizations and charts">
+                        Explore Charts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="h4 mb-0">Login to African Minerals App</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" aria-labelledby="login-heading">
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-bold">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" 
+                               required aria-required="true" autocomplete="username"
+                               aria-describedby="username-help">
+                        <div id="username-help" class="form-text">Enter your registered username</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-bold">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" 
+                               required aria-required="true" autocomplete="current-password"
+                               aria-describedby="password-help">
+                        <div id="password-help" class="form-text">Enter your password</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2" 
+                            aria-label="Sign in to your account">
+                        Login
+                    </button>
+                </form>
+                
+                <div class="mt-4 p-3 bg-light rounded" role="region" aria-label="Demo accounts information">
+                    <h2 class="h6 mb-2">Demo Accounts</h2>
+                    <ul class="list-unstyled small mb-0">
+                        <li><strong>Administrator:</strong> admin01 / admin123</li>
+                        <li><strong>Investor:</strong> investor01 / invest456</li>
+                        <li><strong>Researcher:</strong> research01 / research789</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

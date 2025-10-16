@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-4">Data Visualization</h1>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Mineral Production by Country</h5>
+            </div>
+            <div class="card-body">
+                <div id="chart1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Export Value Trends</h5>
+            </div>
+            <div class="card-body">
+                <div id="chart2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Market Prices</h5>
+            </div>
+            <div class="card-body">
+                <div id="chart3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+// Production by Country (Bar Chart)
+var trace1 = {
+    x: ['DRC (Congo)', 'South Africa', 'Mozambique', 'Namibia'],
+    y: [110000, 130000, 50000, 200000],
+    type: 'bar',
+    name: 'Production 2024',
+    marker: {
+        color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+    }
+};
+
+var layout1 = {
+    title: 'Mineral Production by Country (2024)',
+    xaxis: {title: 'Countries'},
+    yaxis: {title: 'Production (tonnes)'}
+};
+
+Plotly.newPlot('chart1', [trace1], layout1);
+
+// Export Value Trends (Line Chart)
+var trace2 = {
+    x: [2023, 2024],
+    y: [5.2, 6.0],
+    mode: 'lines+markers',
+    name: 'DRC (Congo)',
+    line: {color: '#1f77b4'}
+};
+
+var trace3 = {
+    x: [2023, 2024],
+    y: [8.4, 9.1],
+    mode: 'lines+markers', 
+    name: 'South Africa',
+    line: {color: '#ff7f0e'}
+};
+
+var trace4 = {
+    x: [2023, 2024],
+    y: [0.9, 0.9],
+    mode: 'lines+markers',
+    name: 'Mozambique',
+    line: {color: '#2ca02c'}
+};
+
+var trace5 = {
+    x: [2023, 2024],
+    y: [2.7, 2.7],
+    mode: 'lines+markers',
+    name: 'Namibia', 
+    line: {color: '#d62728'}
+};
+
+var layout2 = {
+    title: 'Export Value Trends (Billion USD)',
+    xaxis: {title: 'Year'},
+    yaxis: {title: 'Export Value (Billion USD)'}
+};
+
+Plotly.newPlot('chart2', [trace2, trace3, trace4, trace5], layout2);
+
+// Market Prices (Pie Chart)
+var trace6 = {
+    labels: ['Cobalt', 'Lithium', 'Graphite', 'Manganese'],
+    values: [52000, 70000, 800, 2200],
+    type: 'pie',
+    hoverinfo: 'label+value+percent',
+    textinfo: 'label+value',
+    textposition: 'inside',
+    marker: {
+        colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+    }
+};
+
+var layout3 = {
+    title: 'Market Price Distribution (USD per Tonne)'
+};
+
+Plotly.newPlot('chart3', [trace6], layout3);
+</script>
+{% endblock %}

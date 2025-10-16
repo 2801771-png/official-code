@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Critical Minerals Database</h1>
+</div>
+
+<div class="row">
+    {% for mineral in minerals %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">{{ mineral.MineralName }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ mineral.Description }}</p>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Market Price:</strong><br>
+                        ${{ mineral.MarketPriceUSD_per_tonne | int | format_number }}/tonne
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

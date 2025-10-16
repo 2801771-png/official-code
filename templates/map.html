@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Interactive Mining Sites Map</h1>
+    <div class="btn-group">
+        <button class="btn btn-outline-primary btn-sm" onclick="zoomToAfrica()">Zoom to Africa</button>
+        <button class="btn btn-outline-info btn-sm" onclick="showMapLegend()">Show Legend</button>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">African Critical Minerals Mining Sites</h5>
+            </div>
+            <div class="card-body p-0">
+                <div id="map" style="height: 600px; width: 100%;">
+                    {{ map_html | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6>Mineral Color Legend</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="d-flex align-items-center">
+                        <div class="legend-color" style="background-color: blue; width: 20px; height: 20px; margin-right: 8px;"></div>
+                        <span>Cobalt</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="legend-color" style="background-color: green; width: 20px; height: 20px; margin-right: 8px;"></div>
+                        <span>Lithium</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="legend-color" style="background-color: red; width: 20px; height: 20px; margin-right: 8px;"></div>
+                        <span>Graphite</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="legend-color" style="background-color: orange; width: 20px; height: 20px; margin-right: 8px;"></div>
+                        <span>Manganese</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6>Map Instructions</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>📍 <strong>Click on markers</strong> to see site details</li>
+                    <li>🖱️ <strong>Drag to pan</strong> around the map</li>
+                    <li>⚙️ <strong>Scroll to zoom</strong> in and out</li>
+                    <li>🌍 Use <strong>"Zoom to Africa"</strong> to reset view</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function zoomToAfrica() {
+    window.location.reload();
+}
+
+function showMapLegend() {
+    const legendCard = document.querySelector('.card:has(.legend-color)');
+    legendCard.style.border = '2px solid #007bff';
+    legendCard.style.boxShadow = '0 0 10px rgba(0,123,255,0.5)';
+    
+    setTimeout(() => {
+        legendCard.style.border = '';
+        legendCard.style.boxShadow = '';
+    }, 3000);
+}
+</script>
+
+<style>
+.legend-color {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#map {
+    border-radius: 0 0 0.375rem 0.375rem;
+}
+
+@media (max-width: 768px) {
+    #map {
+        height: 400px !important;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-4">African Countries Profile</h1>
+
+<div class="row">
+    {% for country in countries %}
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">{{ country.CountryName }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <strong>GDP:</strong><br>
+                        ${{ country.GDP_BillionUSD }} billion
+                    </div>
+                    <div class="col-6">
+                        <strong>Mining Revenue:</strong><br>
+                        ${{ country.MiningRevenue_BillionUSD }} billion
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <strong>Key Projects:</strong><br>
+                    {{ country.KeyProjects }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-4">
+    <h3>Production Statistics</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Mineral</th>
+                    <th>Year</th>
+                    <th>Production (tonnes)</th>
+                    <th>Export Value (Billion USD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in stats %}
+                <tr>
+                    <td>{{ stat.CountryName }}</td>
+                    <td>{{ stat.MineralName }}</td>
+                    <td>{{ stat.Year }}</td>
+                    <td>{{ stat.Production_tonnes | format_number }}</td>
+                    <td>${{ stat.ExportValue_BillionUSD }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
